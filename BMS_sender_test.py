@@ -38,14 +38,14 @@ class Test_BMS_sender(unittest.TestCase):
     def test_simulate_values_for_int_type_BMS_parameters(self, mock_bms_parameter):
         test_para = {'max': 45, 'min': 25, 'type': 'int'}
         mock_bms_parameter.return_value = [1]
-        self.assertEqual(simulate_values_for_BMS_parameters(test_para, 50), [1])
+        self.assertEqual(simulate_values_for_BMS_parameters(test_para, BMS_PARAMETERS_COUNT), [1])
 
     #This test case is to test the functionality of refactored get_simulated_BMS_parameters for each parameter
     @patch('BMS_sensor_simulator.simulate_values_for_float_type_BMS_parameters')
     def test_simulate_values_for_float_type_BMS_parameters(self, mock_bms_parameter):
         test_para = {'max': 1, 'min': 0, 'type': 'float'}
         mock_bms_parameter.return_value = [1]
-        self.assertEqual(simulate_values_for_BMS_parameters(test_para, 50), [1])
+        self.assertEqual(simulate_values_for_BMS_parameters(test_para, BMS_PARAMETERS_COUNT), [1])
 
     #This test case is to test random_functionality used in generating parameters values
     def test_random_method_functionality_used(self):

@@ -19,6 +19,8 @@ from json_format_output_generator import create_json_format_output
 import unittest
 from unittest.mock import patch
 
+BMS_parameters_sender()
+
 class Test_BMS_sender(unittest.TestCase):
     #This test case is to test the functionality of getting the simulated BMS parameters
     @patch('BMS_sensor_simulator.simulate_values_for_BMS_parameters')

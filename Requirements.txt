@@ -1,0 +1,52 @@
+Inputs:-
+
+1) Sender:-
+	a) simulates and sends at least two Battery / Charging parameters
+	b) sends fifty readings in a stream
+	c) can either generate values for the parameters, or read from a file
+	d) uses console output to communicate the parameters.
+
+2) Receiver:-
+	a) reads the parameters from the console input
+	b) after reading every parameter, it prints the following:
+		i) maximum and minimum values in the incoming stream
+		i) simple moving average of the last 5 values
+
+Software Requirements:-
+
+1) Sender:-
+	a) It should generate 50 values in a stream.
+	b) It should send Battery / Charging parameter such as Temperature, State of charge, Charging rate.
+	c) It should send 50 values in one stream.
+	d) only valid values of paramters should be set, i.e they should be in specified range.(Temperature : ( 25–45 °C), SOC: (0 - 100%), Charging Rate: (0 - 1)). These ranges are for a typical battery.
+	e) Values should be in the json format.
+	f) It should use console as output to communicate the parameters.
+
+Test Specifications:-
+
+1) Generating values:-
+	a) When the program is run for generating the values of a parameter, the output should be a list of length 50.
+	b) check temperature parameter values, it should be of int type.
+	c) check soc parameter values, it should be of int type.
+	d) check charging_rate parameter values, it should be of float type. 
+
+
+2) Sending Battery / Charging paramter such as Temperature, State of charge and charging rate:-
+	a) output of program should be 3 paramters i.e Temperature, State of cahrge and charging rate.
+	b) values of each parameter should be in the specified range i.e Temperature: 25 - 45, SOC: 0 - 100% and Charging Rate: 0 - 1.
+
+3) Number of values in one stream:-
+	a) Output of program should contain only 50 samples for each parameter.
+
+4) Output format of values:-
+	a) Output of program should be in json format.
+	        {
+            "data" : {
+                "Temperature" : [<list of 50 values>],
+                "soc" : [<list of 50 values>],
+                "charging rate" : [<list of 50 values>]
+            }
+        }
+
+5) output on console:-
+	a) print the values on console, it should be visible on console.

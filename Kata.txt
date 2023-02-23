@@ -1,0 +1,71 @@
+Requirements:-
+
+1) Sender:-
+	a) simulates and sends at least two Battery / Charging parameters
+	b) sends fifty readings in a stream
+	c) can either generate values for the parameters, or read from a file
+	d) uses console output to communicate the parameters.
+
+2) Receiver:-
+	a) reads the parameters from the console input
+	b) after reading every parameter, it prints the following:
+		i) maximum and minimum values in the incoming stream
+		i) simple moving average of the last 5 values
+
+The BMS parameters are send to console using a simple method:-
+	1) def BMS_parameters_sender()
+		
+		The method will not take any arguments and will send output to the console.
+		a) The output will be in json format.
+		b) The output will contain one key named 'data' and value will be a dictionary consisting of 3 keys i.e BMS parameters Temperature, state of charge and charging rate.
+		c) Each parameter key will have a list of length 50 as value.
+		
+		The method will be refactored in 3 steps:-
+		a) first step will be generating the simulated values for 3 battery parameters.
+		b) second step will be creating these parameters values into json format for sending as output.
+		c) third step will be sending this json format output to the console.
+	
+			1) Generating the simulated values for Battery parameters:-
+				def get_simulated_BMS_parameters(dict bms_params_thd, int bms_params_count)
+				
+					The method will take 2 arguments as input, first argument will be a dictionary containing the minimum, maximum and type of values for a battery parameter,
+					second argument will be a integer which will tell the number of values to be generated for a battery parameter.
+					This method will return a dictionary having battery parameters as keys and list of values for those battery parameters as values.
+					a) BMS_PARAMETERS_THD will be the dictionary containing maximum, minimum and type of values for the paramters.
+					b) BMS_PARAMETERS_COUNT will contain the number of values to be generated for each battery parameter.
+					
+					The method will be refactored in 1 step:-
+					a) first step will be generating the parameter values based on the type of values required.
+						def simulate_values_for_BMS_parameters(dict parameter, int count)
+							and return the list of values for that parameter.
+							The method takes 2 arguments as input, first is a dictionary containing the minimum, maximum and type of parameter and second is int having the count for the values to be generated.
+							This method will call two methods based on type of paramter:-
+								a) def simulate_values_for_int_type_BMS_parameters(dict parameter, int count) 
+									This method will return a list of values of int type for the parameter of type int i.e Temperature and state of charge.
+								b) def simulate_values_for_float_type_BMS_parameters(dict parameter, int count):
+									This method will return a list of values of float type for the parameter of type float i.e charging rate.
+				
+			2) Creating the json format for the BMS parameters:-
+				def create_json_format_output(dict bms_parameters)
+				
+					The method takes a dict of BMS paramters as input and generates a json format output.
+					The output will be in the following format:-
+						        {
+									"data" : {
+										"Temperature" : [<list of 50 values>],
+										"soc" : [<list of 50 values>],
+										"charging rate" : [<list of 50 values>]
+									}
+								}
+			
+			3) Sending output to the console:-
+				def send_packet_to_console(json_bms_paramters)
+				
+					the method take json formatted input of BMS paramters and will print it i.e send this output to console.
+
+Testing approach:-
+
+a) BMS_parameters_sender :- it is tested using behavioural testing as it doesn't return anything.
+b) send_packet_to_console :- it is tested using mock and patch functionality as it only prints the value passed to it..
+c) get_simulated_BMS_parameters:- it is tested using mock and patch functionality as it generates different values in each run.
+

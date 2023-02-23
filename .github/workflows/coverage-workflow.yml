@@ -47,7 +47,7 @@ jobs:
         run: ./receiver -t
 
       - name: collect coverage
-        run: gcovr --exclude="./BMS_Receiver/lib/*" --gcov-exclude=".*test.*" -r . --html --html-details -o coverage_C.html --print-summary
+        run: gcovr --gcov-exclude=".*test.*",".*jsmn.*" -r . --html --html-details -o coverage_C.html --print-summary
           
       - name: Upload coverage
         uses: actions/upload-artifact@v2

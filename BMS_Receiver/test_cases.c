@@ -41,6 +41,11 @@ void test_jsonParser(void)
     count = convertJsonToData(data, json);
     assert(count == 0);
 
+    // Test case to check convertJsonToData with non Json input
+    char data5[] = "";
+    count = convertJsonToData(data5, json);
+    assert(count == 0);
+
     // Test case to check convertJsonToData with one key value pair
     char data1[] = "{\"Age\" : [25]}";
     count = convertJsonToData(data1, json);

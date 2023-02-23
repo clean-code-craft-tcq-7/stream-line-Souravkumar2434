@@ -14,7 +14,6 @@ int convertJsonToData(char* buff, jsonData* data)
 
     jsmn_init(&p);
     r = jsmn_parse(&p, buff, strlen(buff), token, 1000); // "s" is the char array holding the json content
-    printf("%d\n",r);
     if(r > 0)
     {
        while(i < r)

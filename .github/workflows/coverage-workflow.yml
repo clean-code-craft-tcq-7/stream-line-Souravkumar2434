@@ -52,5 +52,12 @@ jobs:
           name: coverage
           path: ./htmlcov
           retention-days: 21
+          
+      - name: 'Upload Artifact C coverage'
+        uses: actions/upload-artifact@v2
+        with:
+          name: coverage_c
+          path: ./*.html
+          retention-days: 21
 
         
